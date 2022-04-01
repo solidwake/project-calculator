@@ -11,7 +11,7 @@ body {
 .calculator {
     background: black;
     width: 563px;
-    height: 1218px;
+    height: 1125px;
     border-radius: 50px;
     padding: 20px;
     color: white;
@@ -29,7 +29,12 @@ body {
     margin-right: 20px;
 }
 .buttons-container {
-
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 10px;
+    column-gap: 10px;
+    padding: 10px;
 }
 .button {
     height: 110px;
@@ -40,4 +45,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.button.function {
+    color: black;
+    background: #a5a5a5;
+}
+.button.operator {
+    background: #f1a33c;
 }
