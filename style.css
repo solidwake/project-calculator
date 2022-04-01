@@ -6,7 +6,7 @@
 }
 body {
     margin: 25px;
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 .calculator {
     background: black;
@@ -27,4 +27,17 @@ body {
     height: 158px;
     text-align: right;
     margin-right: 20px;
+}
+.buttons-container {
+
+}
+.button {
+    height: 110px;
+    width: 110px;
+    font-size: 45px;
+    background: #333;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
