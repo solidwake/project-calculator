@@ -10,10 +10,11 @@ body {
 }
 .calculator {
     background: black;
-    width: 540px;
+    width: 563px;
     height: 1125px;
     border-radius: 50px;
-    padding: 20px;
+    padding: 22px;
+    margin: auto;
     color: white;
 }
 .top-container {
@@ -21,9 +22,9 @@ body {
     height: 250px;
 }
 .display {
-    font-size: 130px;
+    font-size: 150px;
     font-weight: 300px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     height: 158px;
     text-align: right;
     margin-right: 20px;
@@ -34,8 +35,8 @@ body {
     grid-template-columns: repeat(4, 1fr);
     row-gap: 10px;
     column-gap: 10px;
-    padding: 15px;
     width: auto;
+    margin-left: 10px;
 }
 .button {
     height: 110px;
@@ -53,4 +54,11 @@ body {
 }
 .button.operator {
     background: #f1a33c;
+}
+.button.number-0 {
+    width: auto;
+    border-radius: 55px;
+    justify-content: flex-start;
+    padding-left: 43px;
+    grid-column: 1 / 3;
 }
