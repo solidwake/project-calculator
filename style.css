@@ -18,4 +18,13 @@ body {
 }
 .top-container {
     padding: 0 20px;
+    height: 250px;
+}
+.display {
+    font-size: 130px;
+    font-weight: 300px;
+    margin-bottom: 20px;
+    height: 158px;
+    text-align: right;
+    margin-right: 20px;
 }
