@@ -51,6 +51,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+.button:active,
+.button:focus {
+    filter: brightness(120%);
 }
 .button.function {
     color: black;
