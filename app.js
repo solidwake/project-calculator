@@ -68,7 +68,7 @@ const updateTime = () => {
 
     if (currentHour > 12) {
         currentHour -= 12;
-    } else {
+    } else if (currentHour == 0) {
         currentHour += 12;
     }
 
