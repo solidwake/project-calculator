@@ -30,6 +30,24 @@ const numElementArray = [
 ];
 
 
+//Functions
+const handleNumClick = (numString) => {
+    console.log(numString);
+};
+
+
+
+
+//Add Event Listeners to numbers and buttons
+for (let i = 0; i < numElementArray.length; i++) {
+    const numElement = numElementArray[i];
+    numElement.addEventListener('click', () => {
+        handleNumClick(i.toString());
+    });
+}
+
+
+
 //Set up the time
 const updateTime = () => {
     const currentTime = new Date();
