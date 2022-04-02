@@ -31,12 +31,18 @@ const numElementArray = [
 
 
 //Functions
+const getDisplayValue = () => displayElement.textContent.split(',').join('');
+
+const getDisplayNumber = () => {
+    return parseFloat(getDisplayValue());
+}
+
 const handleNumClick = (numString) => {
-    const currentDisplayString = displayElement.textContent;
+    const currentDisplayString = getDisplayValue();
     if (currentDisplayString === '0') {
         displayElement.textContent = numString;   
     } else {
-        displayElement.textContent = currentDisplayString + numString;
+        displayElement.textContent = parseFloat(currentDisplayString + numString).toLocaleString();
     }
 };
 
