@@ -66,8 +66,10 @@ const updateTime = () => {
     let currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
 
-    if (currentHour > 12) {
+    if (currentHour >= 12) {
         currentHour -= 12;
+    } else {
+        currentHour += 12;
     }
 
     hourElement.textContent = currentHour.toString();
