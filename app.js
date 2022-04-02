@@ -35,7 +35,7 @@ const getDisplayValue = () => displayElement.textContent.split(',').join('');
 
 const getDisplayNumber = () => {
     return parseFloat(getDisplayValue());
-}
+};
 
 const handleNumClick = (numString) => {
     const currentDisplayString = getDisplayValue();
@@ -49,14 +49,19 @@ const handleNumClick = (numString) => {
 
 
 
-//Add Event Listeners to numbers and buttons
+//Add Event Listeners to numbers and decimal
 for (let i = 0; i < numElementArray.length; i++) {
     const numElement = numElementArray[i];
     numElement.addEventListener('click', () => {
         handleNumClick(i.toString());
     });
 }
-
+decimalElement.addEventListener('click', () => {
+    const currentDisplayString = getDisplayValue();
+    if (!currentDisplayString.includes('.')) {
+        displayElement.textContent = currentDisplayString + '.';
+    }
+});
 
 
 //Set up the time
