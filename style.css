@@ -21,6 +21,10 @@ body {
     padding: 0 20px;
     height: 250px;
 }
+.clock {
+    margin-top: 5px;
+    font-size: 20px;
+}
 .display {
     font-size: 150px;
     font-weight: 300px;
