@@ -32,7 +32,12 @@ const numElementArray = [
 
 //Functions
 const handleNumClick = (numString) => {
-    console.log(numString);
+    const currentDisplayString = displayElement.textContent;
+    if (currentDisplayString === '0') {
+        displayElement.textContent = numString;   
+    } else {
+        displayElement.textContent = currentDisplayString + numString;
+    }
 };
 
 
