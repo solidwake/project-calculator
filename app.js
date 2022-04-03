@@ -65,7 +65,17 @@ acElement.addEventListener('click', () => {
     setDisplayValue('0');
 });
 pmElement.addEventListener('click', ()=> {
-
+    const currentNumValue = getDisplayNumber();
+    const currentDisplayString = getDisplayValue();
+    if (currentDisplayString === '-0') {
+        setDisplayValue('0');
+        return;
+    }
+    if (currentNumValue >= 0) {
+        setDisplayValue('-' + currentDisplayString);
+    } else {
+        setDisplayValue(currentDisplayString.substring(1));
+    }
 });
 percentElement.addEventListener('click', () => {
     const currentNumValue = getDisplayNumber();
