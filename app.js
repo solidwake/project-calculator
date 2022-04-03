@@ -37,18 +37,22 @@ const getDisplayNumber = () => {
     return parseFloat(getDisplayValue());
 };
 
-
+const setDisplayValue = (valueString) => {
+    if (valueString[valueString.length - 1] === '.') {
+        displayElement.textContent += '.';
+        return;
+    }
+    displayElement.textContent = parseFloat(valueString).toLocaleString();
+};
 
 const handleNumClick = (numString) => {
     const currentDisplayString = getDisplayValue();
     if (currentDisplayString === '0') {
-        displayElement.textContent = numString;   
+        setDisplayValue(numString);   
     } else {
-        displayElement.textContent = parseFloat(currentDisplayString + numString).toLocaleString();
+        setDisplayValue(currentDisplayString + numString);
     }
 };
-
-
 
 
 
@@ -62,7 +66,7 @@ for (let i = 0; i < numElementArray.length; i++) {
 decimalElement.addEventListener('click', () => {
     const currentDisplayString = getDisplayValue();
     if (!currentDisplayString.includes('.')) {
-        displayElement.textContent = currentDisplayString + '.';
+        setDisplayValue(currentDisplayString + '.');
     }
 });
 
