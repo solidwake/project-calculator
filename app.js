@@ -37,6 +37,8 @@ const getDisplayNumber = () => {
     return parseFloat(getDisplayValue());
 };
 
+
+
 const handleNumClick = (numString) => {
     const currentDisplayString = getDisplayValue();
     if (currentDisplayString === '0') {
@@ -45,6 +47,7 @@ const handleNumClick = (numString) => {
         displayElement.textContent = parseFloat(currentDisplayString + numString).toLocaleString();
     }
 };
+
 
 
 
