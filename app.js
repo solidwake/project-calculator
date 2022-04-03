@@ -42,7 +42,13 @@ const setDisplayValue = (valueString) => {
         displayElement.textContent += '.';
         return;
     }
-    displayElement.textContent = parseFloat(valueString).toLocaleString();
+
+    const [wholeNumString, decimalNumString] = valueString.split('.');
+    if (decimalNumString) {
+        displayElement.textContent = parseFloat(wholeNumString).toLocaleString() + '.' + decimalNumString;
+    } else {
+        displayElement.textContent = parseFloat(wholeNumString).toLocaleString();
+    }
 };
 
 const handleNumClick = (numString) => {
