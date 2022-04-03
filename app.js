@@ -1,4 +1,4 @@
-//Dom Elements
+//DOM Elements
 const hourElement = document.querySelector('.hour');
 const minuteElement = document.querySelector('.minute');
 const displayElement = document.querySelector('.display');
@@ -60,6 +60,18 @@ const handleNumClick = (numString) => {
     }
 };
 
+//Add Event Listeners to functions
+acElement.addEventListener('click', () => {
+    setDisplayValue('0');
+});
+pmElement.addEventListener('click', ()=> {
+
+});
+percentElement.addEventListener('click', () => {
+    const currentNumValue = getDisplayNumber();
+    const newNumValue = currentNumValue / 100;
+    setDisplayValue(newNumValue.toString());
+});
 
 
 //Add Event Listeners to numbers and decimal
