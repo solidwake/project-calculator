@@ -29,6 +29,9 @@ const numElementArray = [
     num5Element, num6Element, num7Element, num8Element, num9Element
 ];
 
+//Variables
+let valueStrInMemory = null;
+let operatorInMemory = null;
 
 //Functions
 const getDisplayValue = () => displayElement.textContent.split(',').join('');
@@ -60,9 +63,41 @@ const handleNumClick = (numString) => {
     }
 };
 
-//Add Event Listeners to functions
+const getOperationResult = () => {
+    const currentDisplayNum = getDisplayNumber();
+    const numInMemory = parseFloat(valueStrInMemory);
+    let newValueNum;
+    if (operatorInMemory === 'addition') {
+        newValueNum = numInMemory + currentDisplayNum;
+    } else if (operatorInMemory === 'subtraction') {
+        newValueNum = numInMemory - currentDisplayNum;
+    } else if (operatorInMemory === 'multiplication') {
+        newValueNum = numInMemory * currentDisplayNum;
+    } else if (operatorInMemory === 'division') {
+        newValueNum = numInMemory / currentDisplayNum;
+    }
+    return newValueNum.toString();
+};
+
+const handleOperatorClick = (operation) => {
+    const currentDisplayString = getDisplayValue();
+
+    if (!valueStrInMemory) {
+        valueStrInMemory = currentDisplayString;
+        operatorInMemory = operation;
+        setDisplayValue('0');
+        return;
+    }
+    valueStrInMemory = getOperationResult();
+    operatorInMemory = operation;
+    setDisplayValue('0');
+};
+
+//Add Event Listeners to function buttons
 acElement.addEventListener('click', () => {
     setDisplayValue('0');
+    valueStrInMemory = null;
+    operatorInMemory = null;
 });
 pmElement.addEventListener('click', ()=> {
     const currentNumValue = getDisplayNumber();
@@ -81,9 +116,30 @@ percentElement.addEventListener('click', () => {
     const currentNumValue = getDisplayNumber();
     const newNumValue = currentNumValue / 100;
     setDisplayValue(newNumValue.toString());
+    valueStrInMemory = null;
+    operatorInMemory = null;
 });
 
-
+//Add Event Listeners to operators
+additionElement.addEventListener('click', () => {
+    handleOperatorClick('addition');
+});
+subtractionElement.addEventListener('click', () => {
+    handleOperatorClick('subtraction');
+});
+multiplicationElement.addEventListener('click', () => {
+    handleOperatorClick('multiplication');
+});
+divisionElement.addEventListener('click', () => {
+    handleOperatorClick('division');
+});
+equalElement.addEventListener('click', () => {
+    if (valueStrInMemory) {
+        setDisplayValue(getOperationResult());
+        valueStrInMemory = null;
+        operatorInMemory = null;
+    }
+});
 //Add Event Listeners to numbers and decimal
 for (let i = 0; i < numElementArray.length; i++) {
     const numElement = numElementArray[i];
