@@ -34,6 +34,8 @@ let valueStrInMemory = null;
 let operatorInMemory = null;
 
 //Functions
+const getNumOfDigits = (valueString) => [...valueString].filter(char => /\d/.test(char)).length;
+
 const getDisplayValue = () => displayElement.textContent.split(',').join('');
 
 const getDisplayNumber = () => {
@@ -41,12 +43,31 @@ const getDisplayNumber = () => {
 };
 
 const setDisplayValue = (valueString) => {
+    const digitCount = getNumOfDigits(valueString);
+
+    if (digitCount < 6) {
+      displayElement.style.fontSize = '112px';
+    } else if (digitCount === 6) {
+      displayElement.style.fontSize = '102px';
+    } else if (digitCount === 7) {
+      displayElement.style.fontSize = '92px';
+    } else if (digitCount === 8) {
+      displayElement.style.fontSize = '82px';
+    } else if (digitCount === 9) {
+      displayElement.style.fontSize = '72px';
+    } else if (digitCount === 10) {
+        displayElement.style.fontSize = '62px';
+    } else if (digitCount >= 11) {
+        displayElement.style.fontSize = '35px';
+      }
+
     if (valueString[valueString.length - 1] === '.') {
         displayElement.textContent += '.';
         return;
     }
 
     const [wholeNumString, decimalNumString] = valueString.split('.');
+
     if (decimalNumString) {
         displayElement.textContent = parseFloat(wholeNumString).toLocaleString() + '.' + decimalNumString;
     } else {
@@ -54,19 +75,11 @@ const setDisplayValue = (valueString) => {
     }
 };
 
-const handleNumClick = (numString) => {
-    const currentDisplayString = getDisplayValue();
-    if (currentDisplayString === '0') {
-        setDisplayValue(numString);   
-    } else {
-        setDisplayValue(currentDisplayString + numString);
-    }
-};
-
 const getOperationResult = () => {
     const currentDisplayNum = getDisplayNumber();
     const numInMemory = parseFloat(valueStrInMemory);
     let newValueNum;
+
     if (operatorInMemory === 'addition') {
         newValueNum = numInMemory + currentDisplayNum;
     } else if (operatorInMemory === 'subtraction') {
@@ -79,6 +92,19 @@ const getOperationResult = () => {
     return newValueNum.toString();
 };
 
+const handleNumClick = (numString) => {
+    const currentDisplayString = getDisplayValue();
+    const currentDisplayCount = getNumOfDigits(currentDisplayString);
+    
+    if (currentDisplayCount >=9) return;
+    
+    if (currentDisplayString === '0') {
+        setDisplayValue(numString);   
+    } else {
+        setDisplayValue(currentDisplayString + numString);
+    }
+};
+
 const handleOperatorClick = (operation) => {
     const currentDisplayString = getDisplayValue();
 
@@ -88,37 +114,61 @@ const handleOperatorClick = (operation) => {
         setDisplayValue('0');
         return;
     }
+
     valueStrInMemory = getOperationResult();
     operatorInMemory = operation;
     setDisplayValue('0');
 };
 
-//Add Event Listeners to function buttons
-acElement.addEventListener('click', () => {
+const handleDecimalClick = () => {
+    const currentDisplayString = getDisplayValue();
+    if (!currentDisplayString.includes('.')) {
+      setDisplayValue(currentDisplayString + '.');
+    }
+};
+
+const handleAcClick = () => {
     setDisplayValue('0');
     valueStrInMemory = null;
     operatorInMemory = null;
-});
-pmElement.addEventListener('click', ()=> {
+};
+
+const handlePmClick = () => {
     const currentNumValue = getDisplayNumber();
     const currentDisplayString = getDisplayValue();
+
     if (currentDisplayString === '-0') {
         setDisplayValue('0');
         return;
     }
+
     if (currentNumValue >= 0) {
         setDisplayValue('-' + currentDisplayString);
     } else {
         setDisplayValue(currentDisplayString.substring(1));
     }
-});
-percentElement.addEventListener('click', () => {
+};
+
+const handlePercentClick = () => {
     const currentNumValue = getDisplayNumber();
     const newNumValue = currentNumValue / 100;
     setDisplayValue(newNumValue.toString());
     valueStrInMemory = null;
     operatorInMemory = null;
-});
+};
+
+const handleEqualClick = () => {
+    if (valueStrInMemory) {
+      setDisplayValue(getOperationResult());
+      valueStrInMemory = null;
+      operatorInMemory = null;
+    }
+};
+
+// Add Event Listeners to functions
+acElement.addEventListener('click', handleAcClick);
+pmElement.addEventListener('click', handlePmClick);
+percentElement.addEventListener('click', handlePercentClick);
 
 //Add Event Listeners to operators
 additionElement.addEventListener('click', () => {
@@ -133,13 +183,9 @@ multiplicationElement.addEventListener('click', () => {
 divisionElement.addEventListener('click', () => {
     handleOperatorClick('division');
 });
-equalElement.addEventListener('click', () => {
-    if (valueStrInMemory) {
-        setDisplayValue(getOperationResult());
-        valueStrInMemory = null;
-        operatorInMemory = null;
-    }
-});
+
+equalElement.addEventListener('click', handleEqualClick);
+
 //Add Event Listeners to numbers and decimal
 for (let i = 0; i < numElementArray.length; i++) {
     const numElement = numElementArray[i];
@@ -147,12 +193,7 @@ for (let i = 0; i < numElementArray.length; i++) {
         handleNumClick(i.toString());
     });
 }
-decimalElement.addEventListener('click', () => {
-    const currentDisplayString = getDisplayValue();
-    if (!currentDisplayString.includes('.')) {
-        setDisplayValue(currentDisplayString + '.');
-    }
-});
+decimalElement.addEventListener('click', handleDecimalClick);
 
 
 //Set up the time
