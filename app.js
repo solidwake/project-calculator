@@ -32,6 +32,10 @@ const numElementArray = [
 //Variables
 let valueStrInMemory = null;
 let operatorInMemory = null;
+const KEYDOWN_KEYS = [
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    '.', 'Enter', 'Escape', '+', '-', '=', '*', '/'
+];
 
 //Functions
 const getNumOfDigits = (valueString) => [...valueString].filter(char => /\d/.test(char)).length;
@@ -194,6 +198,71 @@ for (let i = 0; i < numElementArray.length; i++) {
     });
 }
 decimalElement.addEventListener('click', handleDecimalClick);
+
+document.addEventListener('keydown', (e) => {
+    if (!KEYDOWN_KEYS.includes(e.key)) {
+      return;
+    }
+  
+    e.preventDefault();
+  
+    switch (e.key) {
+      case '0':
+        handleNumClick('0');
+        break;
+      case '1':
+        handleNumClick('1');
+        break;
+      case '2':
+        handleNumClick('2');
+        break;
+      case '3':
+        handleNumClick('3');
+        break;
+      case '4':
+        handleNumClick('4');
+        break;
+      case '5':
+        handleNumClick('5');
+        break;
+      case '6':
+        handleNumClick('6');
+        break;
+      case '7':
+        handleNumClick('7');
+        break;
+      case '8':
+        handleNumClick('8');
+        break;
+      case '9':
+        handleNumClick('9');
+        break;
+      case '.':
+        handleDecimalClick();
+        break;
+      case 'Enter':
+        handleEqualClick();
+        break;
+      case '=':
+        handleEqualClick();
+        break;
+      case 'Escape':
+        handleAcClick();
+        break;
+      case '+':
+        handleOperatorClick('addition');
+        break;
+      case '-':
+        handleOperatorClick('subtraction');
+        break;
+      case '*':
+        handleOperatorClick('multiplication');
+        break;
+      case '/':
+        handleOperatorClick('division');
+        break;
+    }
+});
 
 
 //Set up the time
