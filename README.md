@@ -15,4 +15,4 @@ Supports input of up to 9 comma separated digits, and able to display up to 18 c
 Styled using CSS Grid.
 
 ## To be done:
-Make it more responsive. It fits into a window on mobile, but size should adjust and be centered.
+Make it more responsive. It fits into a window on mobile, but size should adjust and it should be centered.
