@@ -13,3 +13,5 @@ The number button variables are placed into an array so they can be looped throu
 Supports input of up to 9 comma separated digits, and able to display up to 18 comma separated digits after calculation. Digits are resized dynamically based on the number of digits in the display. Numeric, arithmetic, enter and escape keys can be used for inputs and calculation. Contains a real time clock.
 
 Styled using CSS Grid.
+
+## To be done: Make it more responsive. It fits into a window on mobile, but size should adjust and be centered.
