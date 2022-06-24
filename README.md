@@ -1,4 +1,4 @@
-# Smartphone calculator
+# SmartCalc
 A calculator with styling and functionality similar to one found in smartphones, featuring a realtime clock and digits that resize automatically to fit the display.
 It also has functionality using only keyboard inputs.
 
